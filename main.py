@@ -17,8 +17,8 @@ function_list = [neutral_simulation,positive_selection_simulation,heterozygous_a
 pool = multiprocessing.Pool(processes=(multiprocessing.cpu_count()-1))
 
 for i in range(3):
-    figure = plt.figure(figsize=(10, 2))
-    results = pool.map(function_list[i], range(2))
+    figure = plt.figure(figsize=(5, 2))
+    results = pool.map(function_list[i], range(10))
     for result in results:
         #axs[i].plot(np.arange(len(result)),result)
         plt.plot(np.arange(len(result)),result)
