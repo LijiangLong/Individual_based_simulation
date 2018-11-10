@@ -50,7 +50,6 @@ class population:
                 if choice == 'selfing':
                     ## a random parent is chosen and its child is determined to be live or dead
                     #  if it dies, then resample it. Other wise, add its genotype to the new array.
-                    pdb.set_trace()
                     parent = np.random.choice(self.population_size,1,p=parents_prob)
                     parent_genotype = self.genotypes[parent[0]]
                     #randomly generate a child 
