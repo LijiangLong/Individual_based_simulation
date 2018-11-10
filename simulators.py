@@ -28,4 +28,7 @@ def Neutral_Evolution_with_incompatible_gene_outcrossing1(p):
     population_simulator = population(growth_speed_array = [1,1,1],incompatible = 1)
     return population_simulator.evolve_until_fix()
     
-
+def Neutral_Evolution_with_incompatible_gene_outcrossing001(p):
+    np.random.seed(p)
+    population_simulator = population(growth_speed_array = [1,1,1],incompatible = 1,outcrossing_rate = 0.01)
+    return population_simulator.evolve_until_fix()

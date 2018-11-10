@@ -14,7 +14,7 @@ from simulators import *
 #fig, axs = plt.subplots(3,1, figsize=(15, 6))
 #axs = axs.ravel()
 #function_list = [neutral_simulation,positive_selection_simulation,heterozygous_advantage_simulation]
-function_list = [Neutral_Evolution_with_incompatible_gene_outcrossing1]
+function_list = [Neutral_Evolution_with_incompatible_gene_outcrossing001]
 pool = multiprocessing.Pool(processes=(multiprocessing.cpu_count()-1))
 
 for i in range(len(function_list)):
@@ -30,5 +30,3 @@ for i in range(len(function_list)):
     plt.ylim(0, 1)
 
     plt.savefig(str(function_list[i]))
-# with open('neural.pkl','w') as f:
-#     pickle.dump([results], f)
