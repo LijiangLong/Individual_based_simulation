@@ -14,9 +14,8 @@ from simulators import *
 #fig, axs = plt.subplots(3,1, figsize=(15, 6))
 #axs = axs.ravel()
 #function_list = [neutral_simulation,positive_selection_simulation,heterozygous_advantage_simulation]
-function_list = [neutral_simulation]
+function_list = [positive_selection_simulation]
 pool = multiprocessing.Pool(processes=(multiprocessing.cpu_count()-1))
-
 for i in range(len(function_list)):
     figure = plt.figure(figsize=(5, 2))
     results = pool.map(function_list[i], range(10))
