@@ -38,7 +38,7 @@ class population:
     def one_generation(self):
         #based on genotypes and growth speed, determine the probability of choosing a particular parent
         
-        parents_prob = self.growth_speed[np.sum(self.genotypes,axis=1).astype(int)]
+        parents_prob = self.growth_speed[2-np.sum(self.genotypes,axis=1).astype(int)]
         parents_prob = parents_prob/np.sum(parents_prob)
         #generate offspring to the population size
         new_genotypes = np.ndarray((self.population_size,2))
