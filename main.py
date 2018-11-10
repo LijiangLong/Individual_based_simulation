@@ -21,11 +21,8 @@ for i in range(len(function_list)):
     figure = plt.figure(figsize=(5, 2))
     results = pool.map(function_list[i], range(10))
     for result in results:
-        #axs[i].plot(np.arange(len(result)),result)
         plt.plot(np.arange(len(result)),result)
-        
-    #axs[i].set_xlim(0, 2000)
-    #axs[i].set_ylim(0, 1)
+    
     plt.xlim(0, 2000)
     plt.ylim(0, 1)
 
