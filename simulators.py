@@ -40,3 +40,8 @@ def Neutral_Evolution_with_incompatible_gene_outcrossing001_large_population_fit
     np.random.seed(p)
     population_simulator = population(population_size = 10000,growth_speed_array = [1,1.0035,1.007],incompatible = 1,outcrossing_rate = 0.01)
     return population_simulator.evolve_until_fix()
+    
+def Neutral_Evolution_with_incompatible_gene_outcrossing0001_large_population_fitness_balancing(p):
+    np.random.seed(p)
+    population_simulator = population(population_size = 10000,growth_speed_array = [1,1.0035,1.007],incompatible = 1,outcrossing_rate = 0.001)
+    return population_simulator.evolve_until_fix()
