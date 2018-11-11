@@ -11,7 +11,7 @@ def neutral_simulation(p):
     
 def positive_selection_simulation(p):
     np.random.seed(p)
-    population_simulator = population(growth_speed_array = [1.3,1.15,1],max_generation=5,outcrossing_rate = 0.01)
+    population_simulator = population(growth_speed_array = [1,1,1],max_generation=50,outcrossing_rate = 0.01,incompatible = 1)
     return population_simulator.evolve_until_fix()
     
     
