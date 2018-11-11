@@ -12,21 +12,26 @@ class individual:
 
 
 class population:
-    def __init__(self, major_allele_freq = 0.5,population_size = 1000,growth_speed_array = [1,1,1],outcrossing_rate = 1,incompatible = 0):
+    def __init__(self, major_allele_freq = 0.5,population_size = 1000,growth_speed_array = [1,1,1],outcrossing_rate = 1,incompatible = 0,max_generation=2000):
         # create a numpy 2d array, each row is an individual
         # each individual has a allele 0 or 1
         self.population_size = population_size
         self.growth_speed = np.array(growth_speed_array)
         self.outcrossing_rate = outcrossing_rate
         self.incompatible = incompatible
-        
+        self.max_generation = max_generation
         genotypes = np.ndarray((population_size,2))
         
-        # 0 or 1 is assigned to the genotypes according the major allele frequency
+        #0 or 1 is assigned to the genotypes according the major allele frequency
+        # for i in range(population_size):
+#             for j in range(2):
+#                 random_allele = np.random.choice(2,1,p=[major_allele_freq,1-major_allele_freq])
+#                 genotypes[i,j] = random_allele
+#         self.genotypes = genotypes
         for i in range(population_size):
-            for j in range(2):
-                random_allele = np.random.choice(2,1,p=[major_allele_freq,1-major_allele_freq])
-                genotypes[i,j] = random_allele
+            random_allele = np.random.choice(2,1,p=[major_allele_freq,1-major_allele_freq])
+            genotypes[i,0] = random_allele
+            genotypes[i,1] = random_allele
         self.genotypes = genotypes
         
         
@@ -78,8 +83,9 @@ class population:
                     break
         self.genotypes = new_genotypes
                         
-    def evolve_until_fix(self,max_generation=2000):
+    def evolve_until_fix(self):
         #pdb.set_trace()
+        max_generation = self.max_generation
         allele_freq_record = []
         i = 0
         while self.calculate_allele_frequency() != 0 and self.calculate_allele_frequency() != 1 and i < max_generation:
@@ -89,4 +95,12 @@ class population:
         return np.array(allele_freq_record)
         
         
+#     def short_evolve(self,max_generation=4):
+#         allele_freq_record = []
+#         i = 0
+#         while self.calculate_allele_frequency() != 0 and self.calculate_allele_frequency() != 1 and i < max_generation:
+#             allele_freq_record.append(self.calculate_allele_frequency())
+#             self.one_generation()
+#             i += 1
+#         return np.array(allele_freq_record)
 
