@@ -119,7 +119,7 @@ def one_simulation(recombination_rate = 0.5):
     freq_A, freq_B = report(individuals)
     A_freqs += [freq_A]*2
     B_freqs += [freq_B]*2
-    for i in range(10):
+    for i in range(100):
         individuals = one_generation(individuals,population_size)
         freq_A, freq_B = report(individuals)
         A_freqs += [freq_A]
@@ -132,7 +132,7 @@ def main():
     # pdb.set_trace()
 
     p = Pool(multiprocessing.cpu_count()-1)
-    recombination_rates = [0.5]*2+[0.4]*2 + [0.3]*2 + [0.2]*2 + [0.1]*2
+    recombination_rates = [0.5]*50+[0.4]*50 + [0.3]*50 + [0.2]*50 + [0.1]*50
     results = p.map(one_simulation,recombination_rates)
     output_file = 'differnt_recom_rate.txt'
     with open(output_file,'w') as output:
