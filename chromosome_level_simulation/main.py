@@ -1,6 +1,7 @@
 import numpy as np
 import os
 from multiprocessing import Pool
+import multiprocessing
 import pdb
 
 
@@ -118,7 +119,7 @@ def one_simulation(recombination_rate = 0.5):
     freq_A, freq_B = report(individuals)
     A_freqs += [freq_A]*2
     B_freqs += [freq_B]*2
-    for i in range(100):
+    for i in range(10):
         individuals = one_generation(individuals,population_size)
         freq_A, freq_B = report(individuals)
         A_freqs += [freq_A]
@@ -129,15 +130,20 @@ def one_simulation(recombination_rate = 0.5):
 
 def main():
     # pdb.set_trace()
-    p = Pool(5)
-    results = p.map(one_simulation,[0.5,0.5,0.5,0.5,0.5])
-    output_file = 'initial_freq_0.1.txt'
+
+    p = Pool(multiprocessing.cpu_count()-1)
+    recombination_rates = [0.5]*2+[0.4]*2 + [0.3]*2 + [0.2]*2 + [0.1]*2
+    results = p.map(one_simulation,recombination_rates)
+    output_file = 'differnt_recom_rate.txt'
     with open(output_file,'w') as output:
-        for i in range(5):
-            peel_trajectory = results[i][0]
+        for i in range(len(recombination_rates)):
+            peel_trajectory,marker_trajectory = results[i]
+            output.write(str(recombination_rates[i]))
+            output.write('\n')
             output.write(','.join([str(x) for x in peel_trajectory]))
             output.write('\n')
-    #     output.write(','.join([str(x) for x in B_freqs]))
+            output.write(','.join([str(x) for x in marker_trajectory]))
+            output.write('\n')
 
 
 if __name__ == "__main__": 
