@@ -110,8 +110,8 @@ def one_simulation(recombination_rate = 0.5):
     # pdb.set_trace()
     # simulate 1000 genomes, 100 peel-zeel and 900 non-peel-zeel
     np.random.seed()
-    group_1 = [individual(Chromosome(True,True,recom_rate = recombination_rate),Chromosome(True,True,recom_rate = recombination_rate)) for i in range(100)]
-    group_2 = [individual(Chromosome(False,False,recom_rate = recombination_rate),Chromosome(False,False,recom_rate = recombination_rate)) for i in range(1900)]
+    group_1 = [individual(Chromosome(True,True,recom_rate = recombination_rate),Chromosome(True,True,recom_rate = recombination_rate)) for i in range(400)]
+    group_2 = [individual(Chromosome(False,False,recom_rate = recombination_rate),Chromosome(False,False,recom_rate = recombination_rate)) for i in range(7600)]
     individuals = group_1 + group_2
     population_size = len(individuals)
     A_freqs = []
@@ -134,7 +134,7 @@ def main():
     p = Pool(multiprocessing.cpu_count()-1)
     recombination_rates = [0.5]*50+[0.4]*50 + [0.3]*50 + [0.2]*50 + [0.1]*50
     results = p.map(one_simulation,recombination_rates)
-    output_file = 'differnt_recom_rate.txt'
+    output_file = 'differnt_recom_rate_2.txt'
     with open(output_file,'w') as output:
         for i in range(len(recombination_rates)):
             peel_trajectory,marker_trajectory = results[i]
